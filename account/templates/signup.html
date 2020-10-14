@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+CookingBOX | 회원가입
+{% endblock %}
+
+{% block content %}
+  <div style="height:100px;"></div>
+  {% if error %}
+    <script type="text/javascript">alert("{{ error }}")</script>
+  {% endif %}
+  <h1>회원가입</h1>
+  <form class="account-form" method="POST" action="{% url 'signup'%}">
+    {% csrf_token %}
+    <br>
+    <input name="username" type="text" value="" placeholder="아이디" required>
+    <br>
+    <br>
+    <input name="password1" type="password" value="" placeholder="비밀번호" required>
+    <br>
+    <br>
+    <input name="password2" type="password" value="" placeholder="비밀번호 확인" required>
+    <br>
+    <br>
+    <input class="btn btn-danger" type="submit" value="회원가입하기">
+  </form>
+{% endblock %}

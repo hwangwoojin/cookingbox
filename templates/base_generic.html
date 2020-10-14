@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,14 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>{% block title %}CookingBOX | 홈{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
   <body>
     <div class="header">
       {% block header %}
         <nav class="navbar navbar-expand-lg navbar-light">
           <a class="navbar-brand" href="{% url 'index' %}">
-            {% load static %}
-            <img src="{% static 'images/logo.png' %}" alt="logo" style="margin-left:30px; height:50px">
+            <img src="{% static 'images/logo.png' %}" alt="logo" style="height:50px">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,28 +53,32 @@
                 <a class="nav-link disabled" href="#">Disabled</a>
               </li> -->
             </ul>
-            <ul class="navbar-nav my-2 my-lg-0" style="margin-right:30px;">
+            <ul class="navbar-nav my-2 my-lg-0">
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="#">로그인</a>
+                <a class="nav-link" href="#">내 정보</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">회원가입</a>
+                <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+                <form id="logout" method="POST" action="{% url 'logout'%}">
+                  {% csrf_token %} <input type="hidden" />
+                </form>
               </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">로그인</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </nav>
       {% endblock %}
     </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-10 ">
-          {% block content %}
-
-          {% endblock %}
-        </div>
-      </div>
+    <div class="container-fluid" style="margin-left:25%">
+      <div>{% block content %}{% endblock %}</div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

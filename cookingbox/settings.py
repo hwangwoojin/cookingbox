@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # customized
     'home.apps.HomeConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,10 +57,7 @@ ROOT_URLCONF = 'cookingbox.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-        ]
-        ,
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
