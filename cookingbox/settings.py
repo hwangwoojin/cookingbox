@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # customized
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
+    'recipe.apps.RecipeConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
