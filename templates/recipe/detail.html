@@ -1,10 +1,31 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <div style="height:20px;"></div>
+  <br><br>
   <div class="container-fluid" style="margin-left:10%">
-    <h1>Title: {{ recipe.title }}</h1>
-    <p><strong>Subtitle:</strong> {{ recipe.subtitle }}</p>
-    <p><strong>Genre:</strong> {% for recipe in recipe.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <div class="row">
+      <div class="col-sm-5">
+        <img src="{{ recipe.profile.url }}" class="img-fluid rounded" alt="Responsive image">
+      </div>
+      <div class="col-sm-5">
+        <br>
+        <h1>{{ recipe.title }}</h1>
+        <h4>{% for genre in recipe.genre.all %}<span class="badge badge-danger">{{ genre }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</h4>
+        <p>{{ recipe.subtitle }}</p>
+        <form method="POST" action="{% url 'login'%}">
+          <input style="width:100%" class="btn btn-danger" type="submit" value="찜하기">
+        </form>
+        <div style="height:10px;"></div>
+        <form method="POST" action="{% url 'login'%}">
+          <input style="width:100%" class="btn btn-danger" type="submit" value="구매하러가기">
+        </form>
+      </div>
+      <div class="col-sm-10">
+        <br><br>
+        <h2>필요한 재료</h2>
+        <br><br>
+        <h2>요리법</h2>
+      </div>
+    </div>
   </div>
 {% endblock %}
