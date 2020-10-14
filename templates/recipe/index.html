@@ -7,7 +7,19 @@
 {% endblock %}
 {% endcomment %}
 
-{% comment %}
 {% block content %}
+  <div style="height:20px;"></div>
+  <div class="container-fluid" style="margin-left:10%">
+    <h1>추천 레시피</h1>
+    {% if recipe_list %}
+      <ul>
+        {% for recipe in recipe_list %}
+          <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a> ({{recipe.subtitle}})</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>요리법 정보가 없습니다.</p>
+    {% endif %}
+    <br>
+  </div>
 {% endblock %}
-{% endcomment %}

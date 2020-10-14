@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div style="height:20px;"></div>
+  <div class="container-fluid" style="margin-left:10%">
+    <h1>Title: {{ recipe.title }}</h1>
+    <p><strong>Subtitle:</strong> {{ recipe.subtitle }}</p>
+    <p><strong>Genre:</strong> {% for recipe in recipe.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  </div>
+{% endblock %}

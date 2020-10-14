@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from home.models import Recipe, Author, Genre
 
 
 # Create your views here.
