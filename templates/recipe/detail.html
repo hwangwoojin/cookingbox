@@ -5,7 +5,7 @@
   <div class="container-fluid" style="margin-left:10%">
     <div class="row">
       <div class="col-sm-5">
-        <img src="{{ recipe.profile.url }}" class="img-fluid rounded" alt="Responsive image">
+        <img src="{{ recipe.profile.url }}" class="img-fluid rounded" alt="요리 사">
       </div>
       <div class="col-sm-5">
         <br>
@@ -23,9 +23,20 @@
       <div class="col-sm-10">
         <br><br>
         <h2>필요한 재료</h2>
-        <br><br>
-        <h2>요리법</h2>
       </div>
+      <div class="col-sm-10">
+      <br><br><h2>요리법</h2>
+      </div>
+      {% for image in recipe.image.all %}
+        <div class="col-sm-5">
+          <img src="{{ image.image.url }}" class="img-fluid rounded" alt="레시피 사진">
+        </div>
+        <div class="col-sm-5">
+          <br>
+          <h3>{{ image.description }}</h3>
+        </div>
+        <div class="col-sm-10"><br></div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}

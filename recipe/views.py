@@ -14,4 +14,3 @@ class RecipeListView(generic.ListView):
 class RecipeDetailView(generic.DetailView):
     model = Recipe
     template_name = 'recipe/detail.html'
-
