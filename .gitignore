@@ -126,6 +126,7 @@ venv.bak/
 pythonenv*
 .idea/
 /secret.py
+.DS_Store
 
 # Spyder project settings
 .spyderproject

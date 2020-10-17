@@ -21,11 +21,23 @@ class Image(models.Model):
         return self.description
 
 
+class Ingredient(models.Model):
+    name = models.CharField(max_length=200, help_text="재료의 이름")
+    amount = models.CharField(max_length=200, help_text="재료의 양")
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=200, help_text="요리의 이름")
     subtitle = models.TextField(max_length=1000, help_text="요리에 대한 간략한 설명")
     profile = models.ImageField(blank=True, help_text="요리에 대한 사진")
     genre = models.ManyToManyField(Genre)
+    ingredient = models.ManyToManyField(Ingredient)
     image = models.ManyToManyField(Image)
 
     class Meta:

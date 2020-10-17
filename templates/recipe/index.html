@@ -8,17 +8,21 @@
 {% endcomment %}
 
 {% block content %}
-  <div style="height:20px;"></div>
-  <div class="container-fluid" style="margin-left:10%">
-    <h1>추천 레시피</h1>
+  <div class="container-fluid">
+    <div class="col-sm-12"><br></div>
+    <h1>모든 레시피</h1>
     {% if recipe_list %}
-      <ul>
-        {% for recipe in recipe_list %}
-          <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a> ({{recipe.subtitle}})</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>요리법 정보가 없습니다.</p>
+      {% for recipe in recipe_list %}
+        <div class="card bg-dark text-white col-sm-12">
+          <img class="card-img" src="{{ recipe.profile.url }}" style="width:100%;max-height:250px;object-fit:cover;">
+          <a href="{{ recipe.get_absolute_url }}">
+            <div class="card-img-overlay">
+              <h1><span class="badge badge-light">{{ recipe.title }}</span></h1>
+              <h4>{% for genre in recipe.genre.all %}<span class="badge badge-danger">{{ genre }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</h4>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
     {% endif %}
     <br>
   </div>
