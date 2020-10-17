@@ -21,7 +21,9 @@
           <input style="width:100%" class="btn btn-danger" type="submit" value="찜하기">
         </form>
         <div style="height:10px;"></div>
-        <form method="POST" action="{% url 'login'%}">
+        <form method="POST" action="{% url 'buy'%}">
+          {% csrf_token %}
+          <input name="recipe_id" type="text" value="{{ recipe.id }}" style="display:none">
           <input style="width:100%" class="btn btn-danger" type="submit" value="구매하러가기">
         </form>
       </div>

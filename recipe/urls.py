@@ -21,4 +21,6 @@ urlpatterns = [
     path('<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
     path('favorite/', views.favorite, name='favorite'),
     path('defavorite/', views.defavorite, name='defavorite'),
+    path('buy/', views.buy, name='buy'),
+    path('purchase/', views.purchase, name='purchase'),
 ]

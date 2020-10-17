@@ -56,3 +56,24 @@ class Favorite(models.Model):
 
     def __str__(self):
         return self.user_id
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=200, help_text="제품의 이름(ex: 물)")
+    product_name = models.CharField(max_length=200, help_text="제품의 실제 이름(ex: 삼다수)")
+    image = models.ImageField(blank=True, help_text="제품의 이미지")
+    amount = models.CharField(max_length=200, help_text="제품의 양")
+    price = models.IntegerField(help_text="제품의 가격")
+
+    def __str__(self):
+        return self.product_name
+
+
+class Purchase(models.Model):
+    recipe_id = models.CharField(max_length=200, help_text="레시피 아이디")
+    user_id = models.CharField(max_length=200, help_text="유저 아이디")
+    product = models.TextField(max_length=1000, help_text="구매 목록")
+    price = models.IntegerField(help_text="구매 가격")
+
+    def __str__(self):
+        return self.user_id
