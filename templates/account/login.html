@@ -6,15 +6,15 @@ CookingBOX | 로그인
 
 {% block content %}
   <div class="container-fluid">
-    <br><br><br><br><br>
+    <br><br><br>
     {% if error %}
       <script type="text/javascript">alert("{{ error }}")</script>
     {% endif %}
     <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-8">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
         <h1>로그인</h1>
-        <form class="account-form" method="POST" action="{% url 'login'%}">
+        <form method="POST" action="{% url 'login'%}">
           {% csrf_token %}
           <br>
           <input name="username" class="w-100 p-2" type="text" value="" placeholder="아이디" required>
@@ -24,6 +24,7 @@ CookingBOX | 로그인
           <input class="btn btn-danger w-100 p-2" type="submit" value="로그인하기">
         </form>
       </div>
+      <div class="col-sm-3"></div>
     </div>
   </div>
 {% endblock %}
