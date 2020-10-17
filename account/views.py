@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from recipe.models import Recipe, Favorite
 
 
 # Create your views here.
@@ -42,3 +43,13 @@ def logout(request):
         auth.logout(request)
         return redirect('home')
     return render(request, 'account/signup.html')
+
+
+def mypage(request):
+    if Favorite.objects.filter(user_id=request.user).count() != 0:
+        recipe_list = []
+        for fav in Favorite.objects.filter(user_id=request.user):
+            recipe_list += Recipe.objects.filter(id=fav.recipe_id)
+        return render(request, 'account/mypage.html', {'recipe_list': recipe_list})
+    else:
+        return render(request, 'account/mypage.html')

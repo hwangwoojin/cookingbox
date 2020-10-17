@@ -1,19 +1,23 @@
 {% extends "base_generic.html" %}
 
+{% block title %}CookingBox | 레시피{% endblock %}
+
 {% block content %}
   <br><br>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col-sm-5">
-        <img src="{{ recipe.profile.url }}" class="img-fluid rounded" alt="요리 사">
+        <img src="{{ recipe.profile.url }}" class="img-fluid rounded" alt="요리 사진" style="box-shadow: 4px 4px 12px gray">
       </div>
       <div class="col-sm-5">
         <br>
         <h1>{{ recipe.title }}</h1>
         <h4>{% for genre in recipe.genre.all %}<span class="badge badge-danger">{{ genre }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</h4>
         <p>{{ recipe.subtitle }}</p>
-        <form method="POST" action="{% url 'login'%}">
+        <form method="POST" action="{% url 'favorite'%}">
+          {% csrf_token %}
+          <input name="recipe_id" type="text" value="{{ recipe.id }}" style="display:none">
           <input style="width:100%" class="btn btn-danger" type="submit" value="찜하기">
         </form>
         <div style="height:10px;"></div>
@@ -43,7 +47,7 @@
       {% for image in recipe.image.all %}
         <div class="col-sm-1"></div>
         <div class="col-sm-5">
-          <img src="{{ image.image.url }}" class="img-fluid rounded" alt="레시피 사진">
+          <img src="{{ image.image.url }}" class="img-fluid rounded" alt="레시피 사진" style="box-shadow: 4px 4px 12px gray">
         </div>
         <div class="col-sm-5">
           <br>

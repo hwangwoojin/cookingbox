@@ -54,7 +54,7 @@
               </li> -->
               {% if user.is_authenticated %}
               <li class="nav-item active">
-                <a class="nav-link" href="#">내 정보</a>
+                <a class="nav-link" href="{% url 'mypage' %}">내 정보</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>

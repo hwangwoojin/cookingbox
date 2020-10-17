@@ -1,18 +1,16 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}CookingBox | 둘러보기{% endblock %}
-
-{% comment %}
-{% block header %}
+{% block title %}
+CookingBOX | 내 정보
 {% endblock %}
-{% endcomment %}
 
 {% block content %}
   <div class="container-fluid">
-    <h1 style="margin-left:25px">모든 레시피</h1>
+    <div class="col-sm-12"><br></div>
+    <h1>내가 찜한 레시피</h1>
     {% if recipe_list %}
+      <br>
       {% for recipe in recipe_list %}
-        <br>
         <div class="card text-white col-sm-12" style="border:none;">
           <img class="card-img" src="{{ recipe.profile.url }}" style="width:100%;max-height:250px;object-fit:cover;box-shadow: 4px 4px 12px gray;">
           <a href="{{ recipe.get_absolute_url }}">
@@ -21,6 +19,11 @@
               <h4>{% for genre in recipe.genre.all %}<span class="badge badge-danger">{{ genre }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</h4>
             </div>
           </a>
+          <form style="z-index:5;box-shadow: 4px 4px 12px gray;" method="POST" action="{% url 'defavorite'%}">
+            {% csrf_token %}
+            <input name="recipe_id" type="text" value="{{ recipe.id }}" style="display:none">
+            <input style="width:100%;" class="btn btn-danger" type="submit" value="찜목록에서 삭제하기">
+          </form><br>
         </div>
       {% endfor %}
     {% endif %}

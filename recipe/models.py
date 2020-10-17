@@ -48,3 +48,11 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse('recipe-detail', args=[str(self.id)])
+
+
+class Favorite(models.Model):
+    recipe_id = models.CharField(max_length=200, help_text="요리법의 아이디")
+    user_id = models.CharField(max_length=200, help_text="유저 아이디")
+
+    def __str__(self):
+        return self.user_id

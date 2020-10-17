@@ -19,4 +19,6 @@ from . import views
 urlpatterns = [
     path('', views.RecipeListView.as_view(), name='recipe'),
     path('<int:pk>', views.RecipeDetailView.as_view(), name='recipe-detail'),
+    path('favorite/', views.favorite, name='favorite'),
+    path('defavorite/', views.defavorite, name='defavorite'),
 ]
