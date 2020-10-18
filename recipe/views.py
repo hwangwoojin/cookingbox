@@ -16,6 +16,8 @@ class RecipeDetailView(generic.DetailView):
 
 
 def favorite(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/recipe/' + request.POST['recipe_id'])
     if Favorite.objects.filter(user_id=request.user).filter(recipe_id=request.POST['recipe_id']).count() == 0:
         fav = Favorite()
         fav.recipe_id = request.POST['recipe_id']
@@ -34,6 +36,8 @@ def defavorite(request):
 
 
 def buy(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/recipe/' + request.POST['recipe_id'])
     recipe = Recipe.objects.get(id=request.POST['recipe_id'])
     ingredient_list = []
     secret_ingredient_list = []

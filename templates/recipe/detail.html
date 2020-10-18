@@ -15,6 +15,7 @@
         <h1>{{ recipe.title }}</h1>
         <h4>{% for genre in recipe.genre.all %}<span class="badge badge-danger">{{ genre }}</span>{% if not forloop.last %} {% endif %}{% endfor %}</h4>
         <p>{{ recipe.subtitle }}</p>
+        {% if user.is_authenticated %}
         <form method="POST" action="{% url 'favorite'%}">
           {% csrf_token %}
           <input name="recipe_id" type="text" value="{{ recipe.id }}" style="display:none">
@@ -26,6 +27,9 @@
           <input name="recipe_id" type="text" value="{{ recipe.id }}" style="display:none">
           <input style="width:100%" class="btn btn-danger" type="submit" value="구매하러가기">
         </form>
+        {% else %}
+        <input style="width:100%" class="btn btn-danger" type="submit" value="로그인이 필요합니다.">
+        {% endif %}
       </div>
       <div class="col-sm-1"></div>
       <div class="col-sm-1"></div>
