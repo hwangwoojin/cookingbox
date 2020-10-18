@@ -23,4 +23,5 @@ urlpatterns = [
     path('defavorite/', views.defavorite, name='defavorite'),
     path('buy/', views.buy, name='buy'),
     path('purchase/', views.purchase, name='purchase'),
+    path('search.', views.search, name='search'),
 ]

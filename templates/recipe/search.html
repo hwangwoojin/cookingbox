@@ -1,13 +1,13 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}CookingBox | 둘러보기{% endblock %}
+{% block title %}CookingBox | 검색{% endblock %}
 
 {% block content %}
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
-        <h1>모든 레시피</h1>
+        <h1>"{{ query }}"에 대한 검색 결과</h1>
         {% for recipe in recipe_list %}
           <br>
           <div class="card text-white col-sm-12" style="border:none;">
@@ -23,6 +23,8 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
+
+
     <br>
   </div>
 {% endblock %}

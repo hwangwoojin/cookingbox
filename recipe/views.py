@@ -56,3 +56,9 @@ def purchase(request):
     pur.price = request.POST['price']
     pur.save()
     return HttpResponseRedirect('/account/mypage/')
+
+
+def search(request):
+    query = request.POST['search']
+    recipe_list = Recipe.objects.filter(title__contains=str(query))
+    return render(request, 'recipe/search.html', {'recipe_list': recipe_list, 'query': query})
