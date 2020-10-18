@@ -40,7 +40,16 @@
         {% endfor %}
         <br><br>
         <h3>부가재료 선택</h3>
-        <br>
+        {% for ingredients in secret_ingredient_list %}
+          <h5><br>{{ ingredients.0.name }}</h5>
+          <select class="custom-select my-1 mr-sm-2">
+            <option value="0" selected="selected">선택 안함</option>
+            {% for product in ingredients %}
+              <option value="{{ product.price }}">{{ product.product_name }} {{ product.amount }} {{ product.price }}원</option>
+            {% endfor %}
+          </select>
+        {% endfor %}
+        <br><br>
         <h3>가격</h3>
         <h1 class="total-price">0 원</h1>
         <br>

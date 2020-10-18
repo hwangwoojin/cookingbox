@@ -36,11 +36,16 @@ def defavorite(request):
 def buy(request):
     recipe = Recipe.objects.get(id=request.POST['recipe_id'])
     ingredient_list = []
+    secret_ingredient_list = []
     for ingredient in recipe.ingredient.all().order_by('name'):
         product_list = []
         product_list += Product.objects.filter(name=ingredient.name)
         ingredient_list.append(product_list)
-    return render(request, 'recipe/buy.html', {'recipe': recipe, 'ingredient_list': ingredient_list})
+    for ingredient in recipe.secret_ingredient.all().order_by('name'):
+        product_list = []
+        product_list += Product.objects.filter(name=ingredient.name)
+        secret_ingredient_list.append(product_list)
+    return render(request, 'recipe/buy.html', {'recipe': recipe, 'ingredient_list': ingredient_list, 'secret_ingredient_list': secret_ingredient_list})
 
 
 def purchase(request):
